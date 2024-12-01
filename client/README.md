@@ -39,3 +39,6 @@ A full-stack web application built with **React**, **Node.js**, and a **MySQL da
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+
+Contributing
+Feel free to fork this repository, make changes, and submit pull requests. Contributions are always welcome!
