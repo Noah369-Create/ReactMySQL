@@ -1,5 +1,4 @@
 client/node_modules/
 index.js
 server/node_modules/
-client/public/
 client/eslint.config.js
