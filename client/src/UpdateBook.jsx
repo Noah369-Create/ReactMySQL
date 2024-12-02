@@ -1,38 +1,34 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateBook = () => {
+  const {id} = useParams()
   const [values, setValues] = useState({
     publisher: "",
     name: "",
     date: ""
-  });
+  })
   const navigate = useNavigate();
-  const { id } = useParams(); // Get book ID from the route parameters
-
-  // Fetch existing book details when the component loads
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3030/getrecord/${id}`)
-      .then((res) => {
-        setValues({
-          publisher: res.data.publisher,
-          name: res.data.name,
-          date: res.data.date,
-        });
-      })
-      .catch((err) => console.log('Error fetching book details:', err));
-  }, [id]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.put("http://localhost:3030/update/" + id, values)
+    .then(res => navigate("/"))
+    .catch(err => console.log(err))
+  }
+  useEffect(() => {
     axios
-      .put(`http://localhost:3030/update/${id}`, values)
-      .then(() => navigate('/')) // Navigate back to the main page
-      .catch((err) => console.log('Error updating book:', err));
-  };
-
+      .get("http://localhost:3030/getrecord/" + id)
+      .then((res) => {
+        setValues({
+          ...values,
+          publisher: res.data[0].publisher,
+          name: res.data[0].name,
+          date: res.data[0].date,
+        })}
+      )
+      .catch((err) => console.log('Error fetching book details:', err));
+  }, [])
   return (
     <div className="d-flex align-items-center flex-column mt-3">
       <h1>Update Book</h1>
@@ -47,7 +43,7 @@ const UpdateBook = () => {
             id="publisher"
             placeholder="Enter Publisher Name"
             name="publisher"
-            value={values.publisher} // Bind the input value
+            value={values.publisher}
             onChange={(e) => setValues({ ...values, publisher: e.target.value })}
           />
         </div>
@@ -60,7 +56,7 @@ const UpdateBook = () => {
             className="form-control"
             placeholder="Enter Book Name"
             name="name"
-            value={values.name} // Bind the input value
+            value={values.name}
             onChange={(e) => setValues({ ...values, name: e.target.value })}
           />
         </div>
@@ -72,7 +68,7 @@ const UpdateBook = () => {
             type="date"
             className="form-control"
             name="date"
-            value={values.date} // Bind the input value
+            value={values.date}
             onChange={(e) => setValues({ ...values, date: e.target.value })}
           />
         </div>
