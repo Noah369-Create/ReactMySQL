@@ -3,43 +3,22 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Books = () => {
-  const [books, setBooks] = useState([]);  // Initialize with an empty array
-  const [loading, setLoading] = useState(true);  // Track loading state
-  const [error, setError] = useState(null);  // Track error state
-
+  const [books, setBooks] = useState([]);  // Initialize with an empty array 
   useEffect(() => {
     axios
       .get('http://localhost:3030')  // Your API endpoint
-      .then(res => {
-        // Ensure res.data is an array before setting it
-        if (Array.isArray(res.data)) {
-          setBooks(res.data);
-        } else {
-          console.error('Expected an array of books but received:', res.data);
-          setBooks([]);  // If not an array, set empty array
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching books:', err);
-        setError(err);  // Set error state if there is an issue
-      })
-      .finally(() => {
-        setLoading(false);  // Set loading to false after the request completes
-      });
+      .then((res) => setBooks(res.data))   
+      .catch((err) => console.log(err))     
   }, []);  // Empty dependency array means this runs once when the component mounts
-
-  if (loading) {
-    return <div className="container mt-5">Loading...</div>;
+  const handleDelete = (id) => {
+    axios
+      .delete('http://localhost:3030/delete/'+id)
+      .then(res => window.location.reload())
+      .catch(err => console.log(err))
   }
-
-  if (error) {
-    return <div className="container mt-5">Error fetching books: {error.message}</div>;
-  }
-
   return (
     <div className="container mt-5">
       <Link to="/create" className="btn btn-success">Create Book</Link>
-
       {books.length !== 0 ? (
         <table className="table">
           <thead>
@@ -48,6 +27,7 @@ const Books = () => {
               <th scope="col">Publisher</th>
               <th scope="col">Book Name</th>
               <th scope="col">Date</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +37,10 @@ const Books = () => {
                 <td>{book.publisher}</td>
                 <td>{book.name}</td>
                 <td>{book.date}</td>
+                <td>
+                  <Link to={'/update/${book.id}'} className='btn btn-info btn-sm me-3'>Update</Link>
+                  <button type="button" onClick={() => handleDelete(book.id)} className='btn btn-danger btn-sm'>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
