@@ -1,5 +1,4 @@
-# **Dynamic Book Management Platform**  
-# Dynamic Book Management System  
+# **Dynamic Book Management Website using MySQL, Node.js and React**  
 
 A full-stack web application built with **React**, **Node.js**, and a **MySQL database** to manage book-related data dynamically.  
 
