@@ -35,15 +35,14 @@ A full-stack web application built with **React**, **Node.js**, and a **MySQL da
 Follow these steps to run the application locally:  
 
 ### Prerequisites  
-1. **Node.js** installed on your machine.  
-2. **MySQL** database running locally or remotely.  
-3. A terminal and a code editor (e.g., VSCode).  
+1. `Node.js` installed on your machine.  
+2. `MySQL` database running locally or remotely.  
+3. `VSCode` as terminal code editor.  
 
 ### Backend Setup  
 1. Clone the repository:  
-   ```bash  
-   git clone https://github.com/Noah369-Create/reactmysql  
-```
+   `bash`
+   `git clone https://github.com/Noah369-Create/reactmysql`
 ---
 
 ## **Features**
@@ -56,15 +55,15 @@ Follow these steps to run the application locally:
 
 ## **Tech Stack**
 ### **Frontend**:  
-- React.js  
-- HTML5, CSS3, Bootstrap
+- `React.js`  
+- `HTML5`, `CSS3`, `Bootstrap`
 
 ### **Backend**:  
-- Node.js  
-- Express.js
+- `Node.js` 
+- `Express.js`
 
 ### **Database**:  
-- MySQL  
+- `MySQL`  
 
 ---
 
