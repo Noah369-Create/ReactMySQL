@@ -38,7 +38,7 @@ const Books = () => {
                 <td>{book.name}</td>
                 <td>{book.date}</td>
                 <td>
-                  <Link to={'/update/${book.id}'} className='btn btn-info btn-sm me-3'>Update</Link>
+                <Link to={`/update/${book.id}`} className="btn btn-info btn-sm me-3">Update</Link>
                   <button type="button" onClick={() => handleDelete(book.id)} className='btn btn-danger btn-sm'>Delete</button>
                 </td>
               </tr>
