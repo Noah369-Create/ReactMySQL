@@ -80,7 +80,7 @@ Follow these steps to run the application locally:
 
 #### 1. Clone the Repository:
 ```bash
-git clone https://github.com/https://github.com/Noah369-Create/reactmysql
+git clone https://github.com/https://github.com/Noah369-Create/reactmysql ```
 
 Contributing
 Feel free to fork this repository, make changes, and submit pull requests. Contributions are always welcome!
